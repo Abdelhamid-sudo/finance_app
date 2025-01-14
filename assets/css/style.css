@@ -1,0 +1,76 @@
+/* assets/css/styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8; /* Couleur pastel douce */
+    color: #333; /* Texte en gris foncé */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h2 {
+    color: #5f6368; /* Gris moyen */
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #ffffff; /* Fond blanc */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s ease-in-out;
+}
+
+form:hover {
+    transform: scale(1.02); /* Légère animation de survol */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #a0c4ff; /* Légère couleur bleue pastel au focus */
+    outline: none;
+}
+
+button {
+    background-color: #a0c4ff; /* Bleu pastel */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8faeff; /* Légèrement plus foncé au survol */
+}
+
+button:active {
+    background-color: #7e94ff;
+}
+
+form .error {
+    color: red;
+    font-size: 14px;
+}
