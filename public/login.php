@@ -7,24 +7,38 @@ include(__DIR__ . '/../includes/db.php');
 // Démarrer la session
 session_start();
 
+// Définir la page pour le CSS dynamique
+$page = 'login'; // Vous pouvez adapter cette valeur si nécessaire
+$css_file = "assets/css/style.css";
+
 // Traitement du formulaire de connexion
+$error_message = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
+    // Récupérer les valeurs du formulaire de manière sécurisée
+    $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
     $password = $_POST['password'];
 
-    // Vérifier si l'utilisateur existe dans la base de données
-    $query = "SELECT * FROM users WHERE email='$email'";
-    $result = mysqli_query($conn, $query);
-    $user = mysqli_fetch_assoc($result);
+    // Utiliser une requête préparée pour sécuriser la base de données
+    $query = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $query->bind_param("s", $email);
+    $query->execute();
+    $result = $query->get_result();
 
-    if ($user && password_verify($password, $user['password_hash'])) {
-        // Authentification réussie
-        // Enregistrer l'ID de l'utilisateur dans la session
-        $_SESSION['user_id'] = $user['id']; // Assurez-vous que la colonne 'id' existe dans la table 'users'
+    // Vérifier si l'utilisateur a été trouvé et si le mot de passe est correct
+    if ($result && $result->num_rows > 0) {
+        $user = $result->fetch_assoc();
 
-        // Rediriger vers le dashboard après la connexion
-        header('Location: dashboard.php');
-        exit();
+        // Vérification du mot de passe
+        if (password_verify($password, $user['password_hash'])) {
+            // Authentification réussie
+            $_SESSION['user_id'] = $user['id'];
+
+            // Redirection vers le tableau de bord
+            header('Location: dashboard.php');
+            exit();
+        } else {
+            $error_message = "Email ou mot de passe incorrect.";
+        }
     } else {
         $error_message = "Email ou mot de passe incorrect.";
     }
@@ -37,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/finance_app/assets/css/style.css">
+    <script src="/finance_app/assets/js/script.js" defer></script>
 </head>
 <body>
     <h2>Connexion</h2>
@@ -50,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <button type="submit">Se connecter</button>
     </form>
-    <?php if (isset($error_message)) echo "<p>$error_message</p>"; ?>
+
+    <?php if (!empty($error_message)) echo "<p style='color: red;'>$error_message</p>"; ?>
 </body>
 </html>

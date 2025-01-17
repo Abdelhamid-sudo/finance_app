@@ -1,76 +1,149 @@
 /* assets/css/styles.css */
 
+/* Style global */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f4f8; /* Couleur pastel douce */
-    color: #333; /* Texte en gris foncé */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
     margin: 0;
+    padding: 0;
 }
 
+/* Diviser la page en sections */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+/* Titres */
 h2 {
-    color: #5f6368; /* Gris moyen */
-    margin-bottom: 20px;
+    font-family: 'Lora', serif;
+    font-size: 2.5rem;
+    color: #4caf50;
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
 }
 
+h3 {
+    font-size: 1.75rem;
+    color: #555;
+    margin-top: 25px;
+    font-family: 'Merriweather', serif;
+}
+
+/* Formulaire */
 form {
-    background-color: #ffffff; /* Fond blanc */
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fafafa;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    transition: transform 0.3s ease-in-out;
-}
-
-form:hover {
-    transform: scale(1.02); /* Légère animation de survol */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 label {
-    display: block;
-    margin-bottom: 8px;
+    font-size: 1.1rem;
     font-weight: bold;
+    color: #666;
+    font-family: 'Arial', sans-serif;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
+input[type="number"], select {
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
     transition: border-color 0.3s ease;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-    border-color: #a0c4ff; /* Légère couleur bleue pastel au focus */
-    outline: none;
+input[type="number"]:focus, select:focus {
+    border-color: #4caf50;
 }
 
 button {
-    background-color: #a0c4ff; /* Bleu pastel */
-    color: white;
-    padding: 10px;
+    padding: 15px 25px;
+    background-color: #4caf50;
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    width: 100%;
+    border-radius: 8px;
+    font-size: 1.2rem;
     cursor: pointer;
-    font-size: 16px;
     transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
 }
 
 button:hover {
-    background-color: #8faeff; /* Légèrement plus foncé au survol */
+    background-color: #45a049;
 }
 
-button:active {
-    background-color: #7e94ff;
+/* Boutons secondaires */
+button[type="submit"] {
+    background-color: #3498db;
 }
 
-form .error {
-    color: red;
-    font-size: 14px;
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Graphiques */
+canvas {
+    margin-top: 30px;
+    max-width: 100%;
+    border-radius: 10px;
+    background-color: #f9fafc;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Messages */
+p {
+    font-size: 1.1rem;
+    color: #444;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Section dividers */
+section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9fafc;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+section h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    input[type="number"], select, button {
+        font-size: 1rem;
+    }
+
+    form {
+        padding: 15px;
+    }
 }
